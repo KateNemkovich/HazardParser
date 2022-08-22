@@ -25,7 +25,29 @@ while (true)
     if (TryFindRecords(groupByYear, query, out result)) break;
 }
 
-Console.WriteLine(result.Count);
+var standart = result[0].Group;
+var year = result[0].Group.Substring(result[0].Group.Length - 2).Insert(0, "20") ;
+var unit = result[0].Unit;
+var riskCategoryI = result[0].Speed.Value;
+double riskCategoryII = result.Count switch
+{
+    > 1 => result[1].Speed.Value,
+    _ => result[0].Speed.Value
+};
+double riskCategoryIII = result.Count switch
+{
+    > 1 => result[2].Speed.Value,
+    _ => result[0].Speed.Value
+};
+
+var report= new TableWindReport();
+report.AddRecord("Standart"," ");
+report.AddRecord("Year", "");
+report.AddRecord("Risk Category I", "");
+report.AddRecord("Risk Category II", "");
+report.AddRecord("Risk Category III", "");
+report.AddRecord("Risk Category IV", "");
+report.AddRecord("Unit", "");
 
 bool TryFindRecords(List<IGrouping<string, NameAndUnitAndGroup>> records, string query,
     out List<NameAndUnitAndGroup> result)
@@ -53,4 +75,5 @@ bool TryFindRecords(List<IGrouping<string, NameAndUnitAndGroup>> records, string
     }
     result = null;
     return false;
+    
 }

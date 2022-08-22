@@ -13,7 +13,7 @@ public class NameAndUnitAndGroup
     [JsonProperty(propertyName: "name")] public string Name { get; set; }
     [JsonProperty(propertyName: "group")] public string Group { get; set; }
     [JsonProperty(propertyName: "unit")] public string Unit { get; set; }
-    [JsonProperty(propertyName: "data")] public DataValue DValue { get; set; }
+    [JsonProperty(propertyName: "data")] public DataValue Speed { get; set; }
 }
 
 public class DataValue
