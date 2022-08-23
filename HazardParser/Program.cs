@@ -39,15 +39,36 @@ double riskCategoryIII = result.Count switch
     > 1 => result[2].Speed.Value,
     _ => result[0].Speed.Value
 };
+double riskCategoryIV;
+if (result.Count == 1)
+    riskCategoryIV = result[0].Speed.Value;
+else if (result.Count == 3)
+    riskCategoryIV = result[2].Speed.Value;
+else if (result.Count == 4)
+    riskCategoryIV = result[3].Speed.Value;
+else
+    throw new ArgumentOutOfRangeException(nameof(result.Count));
 
 var report= new TableWindReport();
-report.AddRecord("Standart"," ");
-report.AddRecord("Year", "");
-report.AddRecord("Risk Category I", "");
-report.AddRecord("Risk Category II", "");
-report.AddRecord("Risk Category III", "");
-report.AddRecord("Risk Category IV", "");
-report.AddRecord("Unit", "");
+report.AddRecord("Standart",standart);
+report.AddRecord("Year", year);
+report.AddRecord("Risk Category I", riskCategoryI.ToString());
+report.AddRecord("Risk Category II", Convert.ToString(riskCategoryII));
+report.AddRecord("Risk Category III", Convert.ToString(riskCategoryIII));
+report.AddRecord("Risk Category IV", Convert.ToString(riskCategoryIV));
+report.AddRecord("Unit", unit);
+PrintReport(report);
+ExportReport(report);
+    
+ void PrintReport(TableWindReport report)
+{
+        
+}
+    
+ void ExportReport(TableWindReport report)
+{
+        
+}
 
 bool TryFindRecords(List<IGrouping<string, NameAndUnitAndGroup>> records, string query,
     out List<NameAndUnitAndGroup> result)
@@ -75,5 +96,7 @@ bool TryFindRecords(List<IGrouping<string, NameAndUnitAndGroup>> records, string
     }
     result = null;
     return false;
+
+   
     
 }
