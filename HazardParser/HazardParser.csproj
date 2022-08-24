@@ -9,11 +9,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="ConsoleTables" Version="2.4.2"/>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
     </ItemGroup>
 
     <Target Name="AfterBuildTarget" AfterTargets="CoreBuild">
-        <Copy SourceFiles="windspeed.json" DestinationFolder="$(OutputPath)" />
+        <Copy SourceFiles="windspeed.json" DestinationFolder="$(OutputPath)"/>
     </Target>
 
 </Project>
